@@ -1,42 +1,236 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍏 Здоровое Питание</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; 
+            color: #333;
+        }
+        .container { 
+            max-width: 400px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: white; 
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+header{
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+header h1{
+    color: #2c5530;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+header p{
+    color: #666;
+    font-size: 14px;
+}
+
+.tabs {
+    display: flex;
+    background: #757778;
+    border-radius: 12px;
+    padding: 5px;
+    margin-bottom: 25px;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: #2c5530;
+    font-weight: bold;
+}
+
+*.tab-content {
+    display: none;
+}
+
+.tab-content.tab.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}*/
+
+.calculator {
+    background: white;
+    padding: 0;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.result {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+.result h3 {
+    color: #2c5530;
+    margin-bottom: 15px;
+}
+
+.macro {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.macro:last-child {
+    border-bottom: none;
+}
+
+.recipes-grid,
+.tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recipe-card,
+.tip-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #4CAF50;
+}
+
+.tip-card {
+    border-left-color: #FF9800;
+}
+
+.recipe-card h3,
+.tip-card h3 {
+    color: #2c5530;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.recipe-card p,
+.tip-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.recipe-macros {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 12px;
+    color: #888;
+}
+
+.recipe-ingredients {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    .tab {
+        padding: 10px;
+        font-size: 11px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Здоровое питание</title>
     <link rel="stylesheet" href="/style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js">
-        // Проверка загрузки CSS
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded');
-            
-            // Проверяем загрузился ли CSS
-            const stylesheets = document.styleSheets;
-            console.log('Stylesheets:', stylesheets.length);
-            
-            if (stylesheets.length === 0) {
-                console.error('CSS не загружен!');
-                // Загружаем CSS динамически
-                loadCSS();
-            }
-        });
-
-        function loadCSS() {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = '/style.css';
-            document.head.appendChild(link);
-            console.log('CSS загружен динамически');
-        }
-    </script>
-</head>
-<body>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    </head>
+    <body>
     <div class="container">
         <header>
-            <h1>Здоровое питание</h1>
-            <p>Ваш персональный помощник по правильному питанию</p>
+            <h1>🍏 Здоровое Питание</h1>
+            <p>Ваш персональный помощник в правильном питании</p>
         </header>
-
+        
         <nav class="tabs">
             <button class="tab active" data-tab="calculator">Калькулятор</button>
             <button class="tab" data-tab="recipes">Рецепты</button>
@@ -110,5 +304,203 @@
     </div>
 
     <script src="/app.js"></script>
+</body>
+</html>
+    </div>
+
+    <script>
+        // инициализация с TG
+const tg = window.Telegram.WebApp;
+tg.expand();
+tg.enableClosingConfirmation();
+
+const recipes = [
+    {
+        id: 1,
+        name: "Тост с авокадо и яйцом",
+        description: "Питательный завтрак с полезными жирами",
+        calories: 350,
+        protein: 15,
+        fat: 20,
+        carbs: 25,
+        ingredients: ["Хлеб цельнозерновой", "Авокадо", "Яйцо", "Специи"]
+    },
+    {
+        id: 2,
+        name: "Овощной салат с киноа",
+        description: "Полезный и легкий обед",
+        calories: 280,
+        protein: 12,
+        fat: 8,
+        carbs: 35,
+        ingredients: ["Киноа", "Огурцы", "Помидоры", "Зелень", "Оливковое масло"]
+    },
+    {
+        id: 3,
+        name: "Куриная грудка с овощами",
+        description: "Белковый ужин для мышц",
+        calories: 320,
+        protein: 35,
+        fat: 8,
+        carbs: 15,
+        ingredients: ["Куринная грудка", "Брокколи", "Морковь", "Специи"]
+    },
+    {
+        id: 4,
+        name: "Лосось на пару",
+        description: "Источник омега-3 кислот",
+        calories: 280,
+        protein: 25,
+        fat: 18,
+        carbs: 5,
+        ingredients: ["Лосось", "Лимон", "Укроп", "Оливковое масло"]
+    },
+    {
+        id: 5,
+        name: "Гречневая каша",
+        description: "Энергичный завтра с медленными углеводами",
+        calories: 220,
+        protein: 8,
+        fat: 4,
+        carbs: 40,
+        ingredients: ["Гречка", "Вода", "Соль", "Зелень"]
+    }
+];
+
+//
+function initTabs() {
+    console.log('TMA: Инициализация табов');
+
+    const tabs = document.querySelectorAll('.tab');
+    if (tabs.length === 0) {
+        console.error('TMA: Табы не найдены');
+        return;
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            console.log('TMA: Клик по табу', this.getAttribute('data-tab'));
+
+            document.querySelectorAll('.tab').forEach(t => {
+                t.classList.remove('active');
+            });
+
+             document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            const tabContent = document.getElementById(tabId);
+
+            if (tabContent) {
+                tabContent.classList.add('active');
+
+                if (tabId === 'recipes') {
+                    loadRecipes();
+                }
+            }
+            else {
+                console.error('TMA: Контент таба не найден', tabId);
+            }
+        });
+    });
+
+    console.log('TMA: Табы инициализированы');
+}
+
+//загрузка рецептов
+function loadRecipes() {
+    const recipesList = document.getElementById('recipes-list');
+    if (!recipesList) return;
+    
+    recipesList.innerHTML = '';
+
+    recipes.forEach(recipe => {
+        const recipeCard = document.createElement('div');
+        recipeCard.className = 'recipe-card';
+        recipeCard.innerHTML = `
+            <h3>${recipe.name}</h3>
+            <p>${recipe.description}</p>
+            <div class="recipe-macros">
+                <p>${recipe.calories} ккал | ${recipe.protein}г | ${recipe.fat} | ${recipe.carbs}г</p>
+            </div>
+            <div class="recipe-ingredients">
+                <strong>Ингредиенты:</strong> ${recipe.ingredients.join(', ')}
+            </div>
+        `;
+        recipesList.appendChild(recipeCard);
+    });
+}
+
+//калькулятор кбжу
+function initCalculator() {
+    console.log('TMA: Инициализация калькулятора');
+
+    const calculateBtn = document.getElementById('calculate');
+    if (!calculateBtn) {
+        console.error('TMA: Кнопка расчета не найдена');
+        return;
+    }
+    
+    calculateBtn.addEventListener('click', calculateMacros);
+    console.log('TMA: Калькулятор инициализирован');
+}
+
+function calculateMacros() {
+    const age = parseInt(document.getElementById('age').value) || 18;
+    const weight = parseInt(document.getElementById('weight').value) || 65;
+    const height = parseInt(document.getElementById('height').value) || 175;
+    const gender = document.getElementById('gender').value;
+    const activity = parseFloat(document.getElementById('activity').value);
+
+    if (!weight || !height || !age) {
+        alert('Все поля должны быть заполнены');
+        return;
+    }
+
+    //базовый метаболизм
+    let bmr;
+    if (gender == 'male') {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    }
+    else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    }
+
+    //суточная норма калорий
+    const calories = Math.round(bmr * activity);
+
+    //расчет бжу
+    const protein = Math.round(weight * 1.5);
+    const fat = Math.round(weight * 0.8);
+    const carbs = Math.round((calories * 0.5) / 4);
+    
+    //
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `
+        <h3>Ваша суточная норма</h3>
+        <div class="macro">
+            <span>Калории:</span>
+            <strong>${calories} ккал</strong>
+        </div>
+        <div class="macro">
+            <span>Белки:</span>
+            <strong>${protein} г</strong>
+        </div>
+        <div class="macro">
+            <span>Калории:</span>
+            <strong>${fat} г</strong>
+        </div>
+        <div class="macro">
+            <span>Калории:</span>
+            <strong>${carbs} г</strong>
+        </div>
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
+            Рекомендация: распределите приемы пищи на 3-5 раз в день
+        </div>
+    `;
+}
+    </script>
 </body>
 </html>
