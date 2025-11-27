@@ -1,57 +1,3 @@
-// Данные рецептов
-const recipes = [
-    {
-        id: 1,
-        name: "Тост с авокадо и яйцом",
-        description: "Питательный завтрак с полезными жирами",
-        calories: 350,
-        protein: 15,
-        fat: 20,
-        carbs: 25,
-        ingredients: ["Хлеб цельнозерновой", "Авокадо", "Яйцо", "Специи"]
-    },
-    {
-        id: 2,
-        name: "Овощной салат с киноа",
-        description: "Полезный и легкий обед",
-        calories: 280,
-        protein: 12,
-        fat: 8,
-        carbs: 35,
-        ingredients: ["Киноа", "Огурцы", "Помидоры", "Зелень", "Оливковое масло"]
-    },
-    {
-        id: 3,
-        name: "Куриная грудка с овощами",
-        description: "Белковый ужин для мышц",
-        calories: 320,
-        protein: 35,
-        fat: 8,
-        carbs: 15,
-        ingredients: ["Куринная грудка", "Брокколи", "Морковь", "Специи"]
-    },
-    {
-        id: 4,
-        name: "Лосось на пару",
-        description: "Источник омега-3 кислот",
-        calories: 280,
-        protein: 25,
-        fat: 18,
-        carbs: 5,
-        ingredients: ["Лосось", "Лимон", "Укроп", "Оливковое масло"]
-    },
-    {
-        id: 5,
-        name: "Гречневая каша",
-        description: "Энергичный завтра с медленными углеводами",
-        calories: 220,
-        protein: 8,
-        fat: 4,
-        carbs: 40,
-        ingredients: ["Гречка", "Вода", "Соль", "Зелень"]
-    }
-];
-
 // Инициализация Telegram Web App
 if (window.Telegram && window.Telegram.WebApp) {
     const tg = window.Telegram.WebApp;
@@ -81,10 +27,6 @@ function initTabs() {
             
             if (tabContent) {
                 tabContent.classList.add('active');
-                
-                if (tabId === 'recipes') {
-                    loadRecipes();
-                }
             }
         });
     });
