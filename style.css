@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif; /* Простой стандартный шрифт */
+    font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #333;
@@ -31,13 +31,11 @@ header h1 {
     color: #2c5530;
     margin-bottom: 10px;
     font-size: 24px;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 header p {
     color: #666;
     font-size: 14px;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 /* Табы */
@@ -57,7 +55,6 @@ header p {
     border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
-    font-family: Arial, sans-serif; /* Единый шрифт */
     transition: all 0.3s ease;
 }
 
@@ -98,7 +95,6 @@ header p {
     margin-bottom: 8px;
     font-weight: 600;
     color: #333;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 .input-group input,
@@ -108,7 +104,6 @@ header p {
     border: 2px solid #e9ecef;
     border-radius: 8px;
     font-size: 16px;
-    font-family: Arial, sans-serif; /* Единый шрифт */
     transition: border-color 0.3s ease;
 }
 
@@ -127,7 +122,6 @@ button {
     border-radius: 8px;
     font-size: 16px;
     font-weight: bold;
-    font-family: Arial, sans-serif; /* Единый шрифт */
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -148,7 +142,6 @@ button:active {
 .result h3 {
     color: #2c5530;
     margin-bottom: 15px;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 .macro {
@@ -157,7 +150,6 @@ button:active {
     margin-bottom: 10px;
     padding: 8px 0;
     border-bottom: 1px solid #e9ecef;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 .macro:last-child {
@@ -190,7 +182,6 @@ button:active {
     color: #2c5530;
     margin-bottom: 10px;
     font-size: 16px;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 .recipe-card p,
@@ -198,7 +189,6 @@ button:active {
     color: #666;
     font-size: 14px;
     line-height: 1.4;
-    font-family: Arial, sans-serif; /* Единый шрифт */
 }
 
 .recipe-macros {
@@ -207,14 +197,20 @@ button:active {
     border-top: 1px solid #f0f0f0;
     font-size: 12px;
     color: #888;
-    font-family: Arial, sans-serif;
 }
 
 .recipe-ingredients {
     margin-top: 8px;
     font-size: 12px;
     color: #666;
-    font-family: Arial, sans-serif;
+}
+
+.recommendation {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #666;
 }
 
 @media (max-width: 480px) {
@@ -226,17 +222,4 @@ button:active {
         padding: 10px;
         font-size: 11px;
     }
-}
-
-h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
-    font-family: Arial, sans-serif !important;
-
-}
-
-.recomendation {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #ddd;
-    font-size: 12px;
-    color: #666;
 }
