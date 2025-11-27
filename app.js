@@ -56,6 +56,12 @@ const recipes = [
     }
 ];
 
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('TMA: DOM загружен');
+    initTabs();
+    initCalculator();
+});
+
 //
 function initTabs() {
     console.log('TMA: Инициализация табов');
@@ -88,8 +94,7 @@ function initTabs() {
                 if (tabId === 'recipes') {
                     loadRecipes();
                 }
-            }
-            else {
+            } else {
                 console.error('TMA: Контент таба не найден', tabId);
             }
         });
@@ -101,7 +106,10 @@ function initTabs() {
 //загрузка рецептов
 function loadRecipes() {
     const recipesList = document.getElementById('recipes-list');
-    if (!recipesList) return;
+    if (!recipesList) {
+        console.error('TMA: Контейнер для рецептов не найден');
+        return;
+    };
     
     recipesList.innerHTML = '';
 
@@ -120,6 +128,8 @@ function loadRecipes() {
         `;
         recipesList.appendChild(recipeCard);
     });
+
+    console.log('TMA: Рецепты загружены');
 }
 
 //калькулятор кбжу
@@ -150,10 +160,9 @@ function calculateMacros() {
 
     //базовый метаболизм
     let bmr;
-    if (gender == 'male') {
+    if (gender === 'male') {
         bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-    }
-    else {
+    } else {
         bmr = 10 * weight + 6.25 * height - 5 * age - 161;
     }
 
@@ -165,7 +174,6 @@ function calculateMacros() {
     const fat = Math.round(weight * 0.8);
     const carbs = Math.round((calories * 0.5) / 4);
     
-    //
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `
         <h3>Ваша суточная норма</h3>
