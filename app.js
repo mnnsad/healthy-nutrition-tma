@@ -1,7 +1,12 @@
 // инициализация с TG
-const tg = window.Telegram.WebApp;
-tg.expand();
-tg.enableClosingConfirmation();
+if (window.Telegram && window.Telegram.WebApp) {
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+    tg.enableClosingConfirmation();
+    console.log('TMA: Telegram Web App инициализирован');
+} else {
+    console.warn('TMA: Telegram Web App API не доступен');
+}
 
 const recipes = [
     {
@@ -80,12 +85,11 @@ function initTabs() {
                 t.classList.remove('active');
             });
 
-             document.querySelectorAll('.tab-content').forEach(content => {
+            document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
 
             this.classList.add('active');
-            const tabId = this.getAttribute('data-tab');
             const tabContent = document.getElementById(tabId);
 
             if (tabContent) {
@@ -153,7 +157,7 @@ function calculateMacros() {
     const gender = document.getElementById('gender').value;
     const activity = parseFloat(document.getElementById('activity').value);
 
-    if (!weight || !height || !age) {
+    if (weight <= 0 || height <= 0 || age <= 0) {
         alert('Все поля должны быть заполнены');
         return;
     }
@@ -197,4 +201,5 @@ function calculateMacros() {
             Рекомендация: распределите приемы пищи на 3-5 раз в день
         </div>
     `;
+
 }
