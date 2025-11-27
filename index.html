@@ -4,139 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Здоровое питание</title>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-            background: #4CAF50;
-            color: white;
-            padding: 20px;
-        }
-        
-        header h1 {
-            margin-bottom: 10px;
-            font-size: 24px;
-        }
-        
-        header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .tabs {
-            display: flex;
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 5px;
-            margin-bottom: 25px;
-        }
-        
-        .tab {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .tab.active {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            color: #2c5530;
-            font-weight: bold;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .input-group input,
-        .input-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        button {
-            width: 100%;
-            padding: 15px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        
-        .result {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
-        }
-        
-        .recipes-grid,
-        .tips-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .recipe-card,
-        .tip-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #4CAF50;
-        }
-    </style>
-    
-    <!-- Telegram Web App SDK -->
+    <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
@@ -193,7 +61,7 @@
             <section id="recipes" class="tab-content">
                 <h2>Полезные рецепты</h2>
                 <div id="recipes-list" class="recipes-grid">
-                    <!-- Рецепты будут загружены через JavaScript -->
+                    <!-- Рецепты загружаются через JS -->
                 </div>
             </section>
 
@@ -212,81 +80,19 @@
                         <h3>Регулярность</h3>
                         <p>Питайтесь 3-5 раз в день небольшими порциями</p>
                     </div>
+                    <div class="tip-card">
+                        <h3>Избегайте сахара</h3>
+                        <p>Ограничьте потребление добавленного сахара</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>Активность</h3>
+                        <p>Сочетайте питание с физической активностью</p>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- УПРОЩЕННЫЙ app.js прямо в HTML -->
-    <script>
-        console.log('TMA: Загрузка приложения...');
-        
-        // Простая инициализация табов
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('TMA: DOM загружен');
-            
-            // Инициализация табов
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Убираем активный класс
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    
-                    // Добавляем активный класс
-                    this.classList.add('active');
-                    const content = document.getElementById(tabId);
-                    if (content) {
-                        content.classList.add('active');
-                    }
-                });
-            });
-            
-            // Инициализация калькулятора
-            const calculateBtn = document.getElementById('calculate');
-            if (calculateBtn) {
-                calculateBtn.addEventListener('click', function() {
-                    const age = parseInt(document.getElementById('age').value) || 18;
-                    const weight = parseInt(document.getElementById('weight').value) || 65;
-                    const height = parseInt(document.getElementById('height').value) || 175;
-                    const gender = document.getElementById('gender').value;
-                    const activity = parseFloat(document.getElementById('activity').value);
-                    
-                    let bmr;
-                    if (gender === 'male') {
-                        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-                    } else {
-                        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
-                    }
-                    
-                    const calories = Math.round(bmr * activity);
-                    const protein = Math.round(weight * 1.5);
-                    const fat = Math.round(weight * 0.8);
-                    const carbs = Math.round((calories * 0.5) / 4);
-                    
-                    const resultDiv = document.getElementById('result');
-                    resultDiv.innerHTML = `
-                        <h3>Ваша суточная норма</h3>
-                        <div>Калории: ${calories} ккал</div>
-                        <div>Белки: ${protein} г</div>
-                        <div>Жиры: ${fat} г</div>
-                        <div>Углеводы: ${carbs} г</div>
-                    `;
-                });
-            }
-            
-            console.log('TMA: Приложение инициализировано');
-        });
-        
-        // Telegram Web App
-        if (window.Telegram && window.Telegram.WebApp) {
-            const tg = window.Telegram.WebApp;
-            tg.expand();
-            tg.ready();
-            console.log('TMA: Telegram Web App инициализирован');
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
