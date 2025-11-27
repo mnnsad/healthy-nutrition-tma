@@ -230,4 +230,13 @@ button:active {
 
 h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
     font-family: Arial, sans-serif !important;
+
+}
+
+.recomendation {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #666;
 }
