@@ -195,6 +195,11 @@ button:active {
     line-height: 1.4;
 }
 
+.recipe-card img {
+    width: 300px;
+    height: auto;
+}
+
 .recipe-macros {
     margin-top: 10px;
     padding-top: 10px;
