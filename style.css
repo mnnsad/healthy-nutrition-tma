@@ -41,7 +41,7 @@ header p {
 /* Табы */
 .tabs {
     display: flex;
-    background: #aaaaaa;
+    background: #666;
     border-radius: 12px;
     padding: 5px;
     margin-bottom: 25px;
